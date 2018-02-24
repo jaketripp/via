@@ -3,7 +3,7 @@ import Card from './Card';
 import { trips } from '../data/sampleTrip';
 
 class CardList extends Component {
-    
+
 
     render() {
         return (
@@ -11,7 +11,7 @@ class CardList extends Component {
                 {
                     trips.map((trip, i) => {
                         return (
-                            <Card key={i} {...trip}/>
+                            <Card key={i} {...trip} />
                         )
                     })
                 }

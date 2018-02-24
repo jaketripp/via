@@ -19,8 +19,8 @@ class Card extends Component {
                 </div>
                 <div className="content">
                     <h3 className="content__name">{this.state.business.name}</h3>
-                    <p className="time"><Clock /> {this.state.minutes} mins</p>
-                    <p className="amount"><Money /> ${this.state.amount}</p>
+                    <p className="time"><Clock /> ~ {this.state.minutes} mins</p>
+                    <p className="amount"><Money /> ~ ${this.state.amount}</p>
                     <p className="link"><a href="https://google.com" title="Bus routes"><Location /> Bus routes</a></p>
                 </div>
             </div>

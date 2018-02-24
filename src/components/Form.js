@@ -10,7 +10,8 @@ class Form extends Component {
             start: '',
             end: '',
             useMyLocationEnabled: true,
-            search: ''
+            search: '',
+            error: 'Missing form fields.',
         }
         // if address is entered, use address
         // otherwise use location
@@ -72,33 +73,36 @@ class Form extends Component {
         this.setState({ end });
     }
 
+    showError = () => {
+        alert(this.state.error);
+    }
+
+    relevantState = ({ amount, location, address, start, end, useMyLocationEnabled, search }) => {
+        return { amount, location, address, start, end, useMyLocationEnabled, search };
+    }
+
     onSubmit = (e) => {
         e.preventDefault();
         let { amount, location, address, start, end, search } = this.state;
         
         if (amount && start && end && search) {
             if (location) {
-                console.log(this.state);
+                console.log(this.relevantState(this.state));
             } else if (address) {
-                console.log(this.state);
+                console.log(this.relevantState(this.state));
+            } else {
+                this.setState({ error: 'Missing form fields. '});
+                this.showError();
             }
+        } else {
+            this.setState({ error: 'Missing form fields.' });
+            this.showError();
         }
     }
 
     render() {
         return (
             <form className="Form" onSubmit={this.onSubmit}>
-
-                <div className="form-field">
-                    <label htmlFor="useMyLocation">Use my location</label>
-                    <input
-                        type="checkbox"
-                        id="useMyLocation"
-                        name="useMyLocation"
-                        checked={this.state.useMyLocationEnabled}
-                        onChange={this.onCheckboxChange}
-                    />
-                </div>
 
                 <div className="form-field">
                     <label htmlFor="address">Address</label>
@@ -111,6 +115,17 @@ class Form extends Component {
                         onChange={this.onAddressChange}
                         disabled={this.state.useMyLocationEnabled}
                     />
+                    <div id="checkboxField">
+                        <input
+                            type="checkbox"
+                            id="useMyLocation"
+                            name="useMyLocation"
+                            checked={this.state.useMyLocationEnabled}
+                            onChange={this.onCheckboxChange}
+                            disabled={this.state.address}
+                        />
+                        <label htmlFor="useMyLocation">Use my location</label>
+                    </div>
                 </div>
 
                 <div className="form-field">
@@ -157,7 +172,7 @@ class Form extends Component {
                 </div>
 
                 <div className="form-field">
-                    <button>Submit</button>
+                    <button className="button">Submit</button>
                 </div>
             </form>
         );

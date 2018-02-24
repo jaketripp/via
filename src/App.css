@@ -4,22 +4,48 @@
 }
 
 .App {
-  width: 1000px;
+  width: 700px;
   max-width: 100%;
   padding: 24px 0;
   margin: 0 auto;
 }
 
 .Form {
-  max-width: 100%;
-  margin: 16px;
-  background: white;
-  padding: 32px 24px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  max-width: 700px;
+  width: calc(100% - 32px);
+  margin: 24px auto;
 }
 
 .form-field label {
   display: block;
+  color: #616161;
+  margin: 16px 0 8px;
+}
+
+.form-field input {
+  font-size: 22px;
+  padding: 8px 16px;
+  border: none;
+}
+
+.form-field input:focus {
+  outline-color: #8FCE47;
+}
+
+#checkboxField {
+  display: flex;
+  align-content: center;
+  margin: 8px 0 0;
+}
+
+#checkboxField label {
+  margin: 0;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  margin: 16px 0;
 }
 
 
@@ -68,6 +94,16 @@
   height: 100%;
 }
 
+.button {
+  background:#8FCE47;
+  color: white;
+  border: none;
+  padding: 16px;
+  font-size: 25px;
+  width: 160px;
+  align-self: center;
+}
+
 .footer {
     height: 128px;
     display: flex;
@@ -89,4 +125,67 @@
 .footer__copyright p {
     margin: 8px 0 0;
     letter-spacing: 1.5px;
+}
+
+.header {
+  background: #8FCE47;
+  margin: 24px auto;
+  width: calc(100% - 32px);
+  max-width: 668px;
+}
+
+.header *, *:before, *:after {
+    position: relative;
+}
+    
+.header * {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+    
+.header h1 {
+    color: white;
+    font-size: 4rem; 
+    text-shadow: .03em .03em 0 #8FCE47;
+    line-height: 1;
+    position: relative;
+    z-index: 5;
+    margin: 24px 0;
+}
+
+.header h1:after {
+    content: attr(data-shadow);
+    position: absolute;
+    top: .06em; left: .06em;
+    z-index: -1;
+    text-shadow: none;
+    background-image: linear-gradient(45deg, transparent 45%, #EAE8E0 45%, #EAE8E0 55%, transparent 0);
+    background-size: .05em .05em;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shad-anim 15s linear infinite;
+}
+
+@keyframes shad-anim {
+    0% {background-position: 0 0}
+    0% {background-position: 100% -100%}
+}
+
+@media (min-width: 450px) {
+  .header h1 {
+    font-size: 6rem; 
+  }
+}
+@media (min-width: 600px) {
+  .header h1 {
+    font-size: 8rem; 
+  }
+}
+@media (min-width: 750px) {
+  .header h1 {
+    font-size: 10rem; 
+  }
 }
