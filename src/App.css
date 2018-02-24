@@ -94,6 +94,18 @@
   height: 100%;
 }
 
+.card .yelpURL a {
+  color: #d32323;
+}
+
+.card .short__info {
+  display: flex;
+  flex-wrap: wrap;
+}
+.card .short__info p {
+  margin: 0 16px 4px 0;
+}
+
 .button {
   background:#8FCE47;
   color: white;

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import moment from 'moment';
+import CardList from './CardList';
+
 class Form extends Component {
     constructor(props) {
         super(props);
@@ -58,6 +60,8 @@ class Form extends Component {
     onAddressChange = (e) => {
         const address = e.target.value;
         this.setState({ address });
+
+
     }
     onSearchChange = (e) => {
         const search = e.target.value;
@@ -85,9 +89,7 @@ class Form extends Component {
         let { amount, location, address, start, end, search } = this.state;
 
         if (amount && start && end && search) {
-            if (location) {
-                console.log(this.relevantState(this.state));
-            } else if (address) {
+            if (location || address) {
                 console.log(this.relevantState(this.state));
             } else {
                 this.setState({ error: 'Missing form fields. ' });
@@ -101,79 +103,83 @@ class Form extends Component {
 
     render() {
         return (
-            <form className="Form" onSubmit={this.onSubmit}>
+            <div className="main">
+                <form className="Form" onSubmit={this.onSubmit}>
 
-                <div className="form-field">
-                    <label htmlFor="address">Address</label>
-                    <input
-                        type="text"
-                        id="address"
-                        name="address"
-                        placeholder="1600 Pennsylvania Ave"
-                        value={this.state.address}
-                        onChange={this.onAddressChange}
-                        disabled={this.state.useMyLocationEnabled}
-                    />
-                    <div id="checkboxField">
+                    <div className="form-field">
+                        <label htmlFor="address">Address</label>
                         <input
-                            type="checkbox"
-                            id="useMyLocation"
-                            name="useMyLocation"
-                            checked={this.state.useMyLocationEnabled}
-                            onChange={this.onCheckboxChange}
-                            disabled={this.state.address}
+                            type="text"
+                            id="address"
+                            name="address"
+                            placeholder="1600 Pennsylvania Ave"
+                            value={this.state.address}
+                            onChange={this.onAddressChange}
+                            disabled={this.state.useMyLocationEnabled}
                         />
-                        <label htmlFor="useMyLocation">Use my location</label>
+                        <div id="checkboxField">
+                            <input
+                                type="checkbox"
+                                id="useMyLocation"
+                                name="useMyLocation"
+                                checked={this.state.useMyLocationEnabled}
+                                onChange={this.onCheckboxChange}
+                                disabled={this.state.address}
+                            />
+                            <label htmlFor="useMyLocation">Use my location</label>
+                        </div>
                     </div>
-                </div>
 
-                <div className="form-field">
-                    <label htmlFor="amount">Amount ($)</label>
-                    <input
-                        type="number"
-                        id="amount"
-                        name="amount"
-                        placeholder="20"
-                        value={this.state.amount}
-                        onChange={this.onAmountChange}
-                    />
-                </div>
+                    <div className="form-field">
+                        <label htmlFor="amount">Amount ($)</label>
+                        <input
+                            type="number"
+                            id="amount"
+                            name="amount"
+                            placeholder="20"
+                            value={this.state.amount}
+                            onChange={this.onAmountChange}
+                        />
+                    </div>
 
-                <div className="form-field">
-                    <label htmlFor="start">Start time</label>
-                    <input
-                        type="time"
-                        id="start"
-                        name="start"
-                        value={this.state.start}
-                        onChange={this.onStartTimeChange}
-                    />
-                    <label htmlFor="end">End time</label>
-                    <input
-                        type="time"
-                        id="end"
-                        name="end"
-                        value={this.state.end}
-                        onChange={this.onEndTimeChange}
-                    />
-                </div>
+                    <div className="form-field">
+                        <label htmlFor="start">Start time</label>
+                        <input
+                            type="time"
+                            id="start"
+                            name="start"
+                            value={this.state.start}
+                            onChange={this.onStartTimeChange}
+                        />
+                        <label htmlFor="end">End time</label>
+                        <input
+                            type="time"
+                            id="end"
+                            name="end"
+                            value={this.state.end}
+                            onChange={this.onEndTimeChange}
+                        />
+                    </div>
 
-                <div className="form-field">
-                    <label htmlFor="search">Search</label>
-                    <input
-                        type="text"
-                        id="search"
-                        name="search"
-                        placeholder="hamburger, movie, tacos, etc ..."
-                        value={this.state.search}
-                        onChange={this.onSearchChange}
-                    />
-                </div>
+                    <div className="form-field">
+                        <label htmlFor="search">Search</label>
+                        <input
+                            type="text"
+                            id="search"
+                            name="search"
+                            placeholder="hamburger, movie, tacos, etc ..."
+                            value={this.state.search}
+                            onChange={this.onSearchChange}
+                        />
+                    </div>
 
-                <div className="form-field">
-                    <button className="button">Submit</button>
-                </div>
-            </form>
+                    <div className="form-field">
+                        <button className="button">Submit</button>
+                    </div>
+                </form>
+                {(this.state.address || this.state.location) && <CardList address={this.state.address} location={this.state.location}/>}
+            </div>
+
         );
     }
 }
