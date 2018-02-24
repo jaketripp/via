@@ -64,6 +64,7 @@ class Form extends Component {
     }
 
     onAddressBlur = () => {
+        alert('blurred');
         const callback = (error, response, body) => {
             const latitude = body.results[0].geometry.location.lat;
             const longitude = body.results[0].geometry.location.lng;
