@@ -37,10 +37,10 @@ class Card extends Component {
                     <div className="short__info">
                         <p className="time"><Clock /> {this.state.minutes} mins</p>
                         <p className="amount"><Money /> ${this.state.cost}</p>
-                        <p className="yelpURL"><a href={this.state.business.yelpURL} title="Yelp Link" target="_blank"><Yelp /></a></p>
+                        <p className="yelpURL"><a href={this.state.business.yelpURL} title="Yelp Link" target="_blank" rel="noopener"><Yelp /></a></p>
                     </div>
                     <p className="phone"><a href={`tel:${this.state.business.phoneNumber}`} title="phone number"><Phone /> {this.state.business.phoneNumber}</a></p>
-                    <p className="link"><a href={this.busRouteURL()} target="_blank" title="Bus routes"><Location /> Bus routes</a></p>
+                    <p className="link"><a href={this.busRouteURL()} target="_blank" rel="noopener" title="Bus routes"><Location /> Bus routes</a></p>
                 </div>
             </div>
         );
