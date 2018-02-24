@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import CardList from './CardList';
+import request from 'request';
 
 class Form extends Component {
     constructor(props) {
@@ -60,8 +61,24 @@ class Form extends Component {
     onAddressChange = (e) => {
         const address = e.target.value;
         this.setState({ address });
+    }
 
-
+    onAddressBlur = () => {
+        const callback = (error, response, body) => {
+            const latitude = body.results[0].geometry.location.lat;
+            const longitude = body.results[0].geometry.location.lng;
+            this.setState({
+                location: {
+                    latitude,
+                    longitude
+                }
+            });
+            console.log(this.state);
+        };
+        request({
+            url: `https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB7UW3p_y7Aw4fyEBmhN2xtA1vYPYJw7PI&address=${this.state.address.split(' ').join('%20')}`,
+            json: true
+        }, callback);
     }
     onSearchChange = (e) => {
         const search = e.target.value;
@@ -115,6 +132,7 @@ class Form extends Component {
                             placeholder="1600 Pennsylvania Ave"
                             value={this.state.address}
                             onChange={this.onAddressChange}
+                            onBlur={this.onAddressBlur}
                             disabled={this.state.useMyLocationEnabled}
                         />
                         <div id="checkboxField">
