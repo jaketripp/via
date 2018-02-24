@@ -6,7 +6,6 @@ import request from 'request';
 class Form extends Component {
     constructor(props) {
         super(props);
-        console.log(moment().format('hh:mm'));
         this.state = {
             amount: '',
             location: '',
@@ -15,11 +14,8 @@ class Form extends Component {
             end: moment().add(2, 'hours').format('HH:mm'),
             useMyLocationEnabled: true,
             search: '',
-            error: 'Missing form fields.',
+            error: '',
         }
-        // if address is entered, use address
-        // otherwise use location
-
         this.getLocation();
     }
 
@@ -65,23 +61,30 @@ class Form extends Component {
     }
 
     onAddressBlur = () => {
-        alert('blurred');
         const callback = (error, response, body) => {
-            const latitude = body.results[0].geometry.location.lat;
-            const longitude = body.results[0].geometry.location.lng;
-            this.setState({
-                location: {
-                    latitude,
-                    longitude
-                }
-            });
-            console.log(this.state);
+            if (response.body.error_message) {
+                this.setState({
+                    location: '',
+                    error: 'Location not found. Empty address'
+                })
+            } else {
+                const latitude = body.results[0].geometry.location.lat;
+                const longitude = body.results[0].geometry.location.lng;
+                this.setState({
+                    location: {
+                        latitude,
+                        longitude
+                    },
+                    error: ''
+                });
+            }
         };
         request({
             url: `https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB7UW3p_y7Aw4fyEBmhN2xtA1vYPYJw7PI&address=${this.state.address.split(' ').join('%20')}`,
             json: true
         }, callback);
     }
+
     onSearchChange = (e) => {
         const search = e.target.value;
         this.setState({ search });
@@ -95,10 +98,6 @@ class Form extends Component {
         this.setState({ end });
     }
 
-    showError = () => {
-        alert(this.state.error);
-    }
-
     relevantState = ({ amount, location, address, start, end, useMyLocationEnabled, search }) => {
         return { amount, location, address, start, end, useMyLocationEnabled, search };
     }
@@ -109,20 +108,20 @@ class Form extends Component {
 
         if (amount && start && end && search) {
             if (location || address) {
+                this.setState({ error: '' });
                 console.log(this.relevantState(this.state));
             } else {
                 this.setState({ error: 'Missing form fields. ' });
-                this.showError();
             }
         } else {
-            this.setState({ error: 'Missing form fields.' });
-            this.showError();
+            this.setState({ error: 'Missing form fields. ' });
         }
     }
 
     render() {
         return (
             <div className="main">
+                {this.state.error && <p className="error">{this.state.error}</p>}
                 <form className="Form" onSubmit={this.onSubmit}>
 
                     <div className="form-field">
@@ -144,7 +143,7 @@ class Form extends Component {
                                 name="useMyLocation"
                                 checked={this.state.useMyLocationEnabled}
                                 onChange={this.onCheckboxChange}
-                                disabled={this.state.address}
+                                disabled={this.state.address || !this.state.useMyLocationEnabled}
                             />
                             <label htmlFor="useMyLocation">Use my location</label>
                         </div>
@@ -197,7 +196,7 @@ class Form extends Component {
                         <button className="button">Submit</button>
                     </div>
                 </form>
-                {(this.state.address || this.state.location) && <CardList address={this.state.address} location={this.state.location}/>}
+                {(this.state.address || this.state.location) && <CardList address={this.state.address} location={this.state.location} />}
             </div>
 
         );

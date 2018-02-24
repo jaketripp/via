@@ -1,14 +1,14 @@
 const trips = [
     {
         business: {
-            name: 'Burger Castle',
+            name: 'Geekdom',
             imgURL: 'burger.jpg',
             cost: '$',
             phone: '210-583-9176',
             address: '123 Main Street',
             coordinates: {
-                latitude: '29.461844',
-                longitude: '98.483162'
+                latitude: '29.426275',
+                longitude: '-98.493509'
             },
             yelpURL: 'https://www.yelp.com/developers',
         },

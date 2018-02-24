@@ -4,7 +4,7 @@ const Money = require('react-icons/lib/fa/money');
 const Phone = require('react-icons/lib/fa/phone');
 const Yelp = require('react-icons/lib/fa/yelp');
 const Clock = require('react-icons/lib/io/clock');
-
+// AIzaSyB7UW3p_y7Aw4fyEBmhN2xtA1vYPYJw7PI key
 class Card extends Component {
     constructor(props) {
         super(props);
@@ -22,6 +22,10 @@ class Card extends Component {
         }
     }
 
+    busRouteURL = () => {
+        return `https://tripplan.viainfo.net/#/app/tripplanning/itineraries/${this.state.userLocation.latitude}/${this.state.userLocation.longitude}/Start/${this.state.business.coordinates.latitude}/${this.state.business.coordinates.longitude}/${this.state.business.name}`;
+    }
+
     render() {
         return (
             <div className="card">
@@ -36,7 +40,7 @@ class Card extends Component {
                         <p className="yelpURL"><a href={this.state.business.yelpURL} title="Yelp Link"><Yelp /></a></p>
                     </div>
                     <p className="phone"><a href={`tel:${this.state.business.phone}`} title="phone number"><Phone /> {this.state.business.phone}</a></p>
-                    <p className="link"><a href={`https://tripplan.viainfo.net/#/app/tripplanning/itineraries/[latitude of start]/[longitude of start]/Start/[latitude of end]/[longitude of end]/[address of end]`} title="Bus routes"><Location /> Bus routes</a></p>
+                    <p className="link"><a href={this.busRouteURL()} target="_blank" title="Bus routes"><Location /> Bus routes</a></p>
                 </div>
             </div>
         );
