@@ -1,0 +1,35 @@
+.Form {
+  width: 100%;
+}
+
+.form-field input {
+  width: 1000px;
+  max-width: 90%;
+}
+
+.form-field label {
+  display: block;
+}
+
+
+.cards {
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+.card .picture {
+  flex: 1 1 300px;
+}
+.card .content {
+  flex: 1 1 400px;
+}
+.card .picture img {
+  width: 100%;
+}
