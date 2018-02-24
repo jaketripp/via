@@ -6,12 +6,13 @@ import request from 'request';
 class Form extends Component {
     constructor(props) {
         super(props);
+        console.log(moment().format('hh:mm'));
         this.state = {
             amount: '',
             location: '',
             address: '',
-            start: moment().format('hh:mm'),
-            end: moment().add(2, 'hours').format('hh:mm'),
+            start: moment().format('HH:mm'),
+            end: moment().add(2, 'hours').format('HH:mm'),
             useMyLocationEnabled: true,
             search: '',
             error: 'Missing form fields.',
