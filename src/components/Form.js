@@ -15,6 +15,7 @@ class Form extends Component {
             useMyLocationEnabled: true,
             search: '',
             error: '',
+            trips: []
         }
         this.getLocation();
     }
@@ -98,18 +99,50 @@ class Form extends Component {
         this.setState({ end });
     }
 
-    relevantState = ({ amount, location, address, start, end, useMyLocationEnabled, search }) => {
-        return { amount, location, address, start, end, useMyLocationEnabled, search };
-    }
-
-    onSubmit = (e) => {
+    onSubmit = async (e) => {
         e.preventDefault();
         let { amount, location, address, start, end, search } = this.state;
 
         if (amount && start && end && search) {
             if (location || address) {
                 this.setState({ error: '' });
-                console.log(this.relevantState(this.state));
+                const data = {
+                    location: this.state.location,
+                    address: this.state.address,
+                    startTime: this.state.start,
+                    endTime: this.state.end,
+                    money: this.state.amount,
+                    searchTerm: this.state.search
+                }
+                const response =  await fetch('http://localhost:8889', {
+                    body: JSON.stringify(data),
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    method: 'POST'
+                });
+
+                const responseBody = await response.json();
+
+                this.setState({ trips: responseBody });
+
+                // request.post({
+                //     url: 'http://localhost:8889',
+                //     formData: this.state,
+                //     json: true
+                // }, (error, response, body) => {
+                //     // if (response.body.error_message) {
+                //     //     this.setState({
+                //     //         error: 'Something went wrong. Refresh the page and try again'
+                //     //     })
+                //     // } else {
+                //         console.log(response);
+                //     // }
+                // });
+
+
+
+
             } else {
                 this.setState({ error: 'Missing form fields. ' });
             }
@@ -196,7 +229,7 @@ class Form extends Component {
                         <button className="button">Submit</button>
                     </div>
                 </form>
-                {(this.state.address || this.state.location) && <CardList address={this.state.address} location={this.state.location} />}
+                {(this.state.address || this.state.location) && <CardList address={this.state.address} location={this.state.location} trips={this.state.trips}/>}
             </div>
 
         );

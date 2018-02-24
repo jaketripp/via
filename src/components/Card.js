@@ -30,16 +30,16 @@ class Card extends Component {
         return (
             <div className="card">
                 <div className="picture">
-                    <div style={{ backgroundImage: `url('/images/${this.state.business.imgURL}')` }} alt={this.state.name}></div>
+                    <div style={{ backgroundImage: `url(${this.state.business.imgURL})` }} alt={this.state.name}></div>
                 </div>
                 <div className="content">
                     <h3 className="content__name">{this.state.business.name}</h3>
                     <div className="short__info">
                         <p className="time"><Clock /> {this.state.minutes} mins</p>
-                        <p className="amount"><Money /> ${this.state.amount}</p>
-                        <p className="yelpURL"><a href={this.state.business.yelpURL} title="Yelp Link"><Yelp /></a></p>
+                        <p className="amount"><Money /> ${this.state.cost}</p>
+                        <p className="yelpURL"><a href={this.state.business.yelpURL} title="Yelp Link" target="_blank"><Yelp /></a></p>
                     </div>
-                    <p className="phone"><a href={`tel:${this.state.business.phone}`} title="phone number"><Phone /> {this.state.business.phone}</a></p>
+                    <p className="phone"><a href={`tel:${this.state.business.phoneNumber}`} title="phone number"><Phone /> {this.state.business.phoneNumber}</a></p>
                     <p className="link"><a href={this.busRouteURL()} target="_blank" title="Bus routes"><Location /> Bus routes</a></p>
                 </div>
             </div>
