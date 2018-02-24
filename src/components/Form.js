@@ -128,7 +128,7 @@ class Form extends Component {
                 </div>
 
                 <div className="form-field">
-                    <label htmlFor="amount">$</label>
+                    <label htmlFor="amount">Amount ($)</label>
                     <input
                         type="number"
                         id="amount"
@@ -179,7 +179,3 @@ class Form extends Component {
 }
 
 export default Form;
-
-
-
-// </div>
