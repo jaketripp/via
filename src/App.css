@@ -1,10 +1,21 @@
-.Form {
-  width: 100%;
+#root {
+  background: #F0F0F0;
+  color: #212121;
 }
 
-.form-field input {
+.App {
   width: 1000px;
-  max-width: 90%;
+  max-width: 100%;
+  padding: 24px 0;
+  margin: 0 auto;
+}
+
+.Form {
+  max-width: 100%;
+  margin: 16px;
+  background: white;
+  padding: 32px 24px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .form-field label {
@@ -14,22 +25,68 @@
 
 .cards {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .card {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-content: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 16px;
+  flex: 1 1 500px;
 }
 
 .card .picture {
-  flex: 1 1 300px;
+  flex: 1 1 304px;
+  height: 300px;
+  overflow: hidden;
 }
 .card .content {
-  flex: 1 1 400px;
+  flex: 3 1 304px;
+  padding: 24px;
+  background: white;
 }
-.card .picture img {
+
+.card .content h3 {
+  font-size: 40px;
+  margin: 16px 0;
+}
+
+.card .content p {
+  margin: 4px 0;
+  font-size: 25px;
+}
+
+.card .content a {
+  color: #8FCE47;
+}
+
+.card .picture div {
+  background-size: cover;
   width: 100%;
+  height: 100%;
+}
+
+.footer {
+    height: 128px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    background: #F0F0F0
+}
+
+.footer__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer__copyright p {
+    margin: 8px 0 0;
+    letter-spacing: 1.5px;
 }

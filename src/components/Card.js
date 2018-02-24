@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+const Location = require('react-icons/lib/fa/location-arrow');
+const Money = require('react-icons/lib/fa/money');
+const Clock = require('react-icons/lib/io/clock');
 
 class Card extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            ...props
+            ...props,
         }
     }
 
@@ -12,13 +15,13 @@ class Card extends Component {
         return (
             <div className="card">
                 <div className="picture">
-                    <img src={`/images/${this.state.imgURL}`} alt={this.state.name} />
+                    <div style={{ backgroundImage: `url('/images/${this.state.business.imgURL}')`}} alt={this.state.name}></div>
                 </div>
                 <div className="content">
-                    <h3 className="content__name">{this.state.name}</h3>
-                    <p className="time">~30 minutes</p>
-                    <p className="amount">~${this.state.amount}</p>
-                    <a href="https://google.com" title="Bus routes">Bus routes</a>
+                    <h3 className="content__name">{this.state.business.name}</h3>
+                    <p className="time"><Clock /> {this.state.minutes} mins</p>
+                    <p className="amount"><Money /> ${this.state.amount}</p>
+                    <p className="link"><a href="https://google.com" title="Bus routes"><Location /> Bus routes</a></p>
                 </div>
             </div>
         );

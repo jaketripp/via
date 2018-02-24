@@ -7,8 +7,8 @@ class Form extends Component {
             amount: '',
             location: '',
             address: '',
-            from: '',
-            to: '',
+            start: '',
+            end: '',
             useMyLocationEnabled: true,
             search: ''
         }
@@ -28,8 +28,8 @@ class Form extends Component {
         const geo_success = (position) => {
             this.setState({
                 location: {
-                    lat: position.coords.latitude,
-                    long: position.coords.longitude
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude
                 }
             });
         }
@@ -60,10 +60,34 @@ class Form extends Component {
         const search = e.target.value;
         this.setState({ search });
     }
+    onCheckboxChange = (e) => {
+        this.setState({ useMyLocationEnabled: !this.state.useMyLocationEnabled });
+    }
+    onStartTimeChange = (e) => {
+        const start = e.target.value;
+        this.setState({ start });
+    }
+    onEndTimeChange = (e) => {
+        const end = e.target.value;
+        this.setState({ end });
+    }
+
+    onSubmit = (e) => {
+        e.preventDefault();
+        let { amount, location, address, start, end, search } = this.state;
+        
+        if (amount && start && end && search) {
+            if (location) {
+                console.log(this.state);
+            } else if (address) {
+                console.log(this.state);
+            }
+        }
+    }
 
     render() {
         return (
-            <form className="Form">
+            <form className="Form" onSubmit={this.onSubmit}>
 
                 <div className="form-field">
                     <label htmlFor="useMyLocation">Use my location</label>
@@ -71,7 +95,8 @@ class Form extends Component {
                         type="checkbox"
                         id="useMyLocation"
                         name="useMyLocation"
-                        disabled={!this.state.useMyLocationEnabled}
+                        checked={this.state.useMyLocationEnabled}
+                        onChange={this.onCheckboxChange}
                     />
                 </div>
 
@@ -84,6 +109,7 @@ class Form extends Component {
                         placeholder="1600 Pennsylvania Ave NW, Washington, DC 20500"
                         value={this.state.address}
                         onChange={this.onAddressChange}
+                        disabled={this.state.useMyLocationEnabled}
                     />
                 </div>
 
@@ -96,6 +122,25 @@ class Form extends Component {
                         placeholder="20"
                         value={this.state.amount}
                         onChange={this.onAmountChange}
+                    />
+                </div>
+
+                <div className="form-field">
+                    <label htmlFor="start">Start time</label>
+                    <input
+                        type="time"
+                        id="start"
+                        name="start"
+                        value={this.state.start}
+                        onChange={this.onStartTimeChange}
+                    />
+                    <label htmlFor="end">End time</label>
+                    <input
+                        type="time"
+                        id="end"
+                        name="end"
+                        value={this.state.end}
+                        onChange={this.onEndTimeChange}
                     />
                 </div>
 
