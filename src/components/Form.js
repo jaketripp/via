@@ -118,7 +118,7 @@ class Form extends Component {
                 }
 
                 try {
-                    const response = await fetch('https://kiafarhang.com/distillr', {
+                    const response = await fetch('http://localhost:8889', {
                         body: JSON.stringify(data),
                         headers: {
                             'content-type': 'application/json'
@@ -132,25 +132,6 @@ class Form extends Component {
                     console.log(e);
                     this.setState({ error: 'Something went wrong. Refresh the page and try again' })
                 }
-
-
-                // request.post({
-                //     url: 'http://localhost:8889',
-                //     formData: this.state,
-                //     json: true
-                // }, (error, response, body) => {
-                //     // if (response.body.error_message) {
-                //     //     this.setState({
-                //     //         error: 'Something went wrong. Refresh the page and try again'
-                //     //     })
-                //     // } else {
-                //         console.log(response);
-                //     // }
-                // });
-
-
-
-
             } else {
                 this.setState({ error: 'Missing form fields. ' });
             }
