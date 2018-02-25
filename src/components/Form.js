@@ -101,6 +101,8 @@ class Form extends Component {
 
     onSubmit = async (e) => {
         e.preventDefault();
+        this.setState({ trips: [] });
+
         let { amount, location, address, start, end, search } = this.state;
 
         if (amount && start && end && search) {
@@ -114,17 +116,23 @@ class Form extends Component {
                     money: this.state.amount,
                     searchTerm: this.state.search
                 }
-                const response =  await fetch('http://localhost:8889', {
-                    body: JSON.stringify(data),
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                    method: 'POST'
-                });
 
-                const responseBody = await response.json();
+                try {
+                    const response = await fetch('http://localhost:8889', {
+                        body: JSON.stringify(data),
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        mode: 'cors',
+                        method: 'POST'
+                    });
+                    const responseBody = await response.json();
+                    this.setState({ trips: responseBody });
+                } catch (e) {
+                    console.log(e);
+                    this.setState({ error: 'Something went wrong. Refresh the page and try again' })
+                }
 
-                this.setState({ trips: responseBody });
 
                 // request.post({
                 //     url: 'http://localhost:8889',
@@ -229,7 +237,7 @@ class Form extends Component {
                         <button className="button">Submit</button>
                     </div>
                 </form>
-                {(this.state.address || this.state.location) && <CardList address={this.state.address} location={this.state.location} trips={this.state.trips}/>}
+                {(this.state.address || this.state.location) && <CardList address={this.state.address} location={this.state.location} trips={this.state.trips} />}
             </div>
 
         );

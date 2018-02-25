@@ -68,26 +68,28 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin: 16px;
   flex: 1 1 500px;
+  min-height: 320px;
 }
 
 .card .picture {
   flex: 1 1 304px;
-  height: 300px;
+  height: 320px;
   overflow: hidden;
 }
 .card .content {
   flex: 3 1 304px;
-  padding: 24px;
+  padding: 16px;
   background: white;
 }
 
 .card .content h3 {
   font-size: 40px;
   margin: 16px 0;
+  line-height: 0.9;
 }
 
 .card .content p {
-  margin: 4px 0;
+  margin: 8px 0;
   font-size: 25px;
 }
 
@@ -97,6 +99,7 @@
 
 .card .picture div {
   background-size: cover;
+  background-position: center;
   width: 100%;
   height: 100%;
 }
@@ -110,7 +113,7 @@
   flex-wrap: wrap;
 }
 .card .short__info p {
-  margin: 0 16px 4px 0;
+  margin: 0 8px 4px 0;
 }
 
 .button {
@@ -148,7 +151,7 @@
 
 .header {
   background: #8FCE47;
-  margin: 24px auto;
+  margin: 0 auto 24px;
   width: calc(100% - 32px);
   max-width: 668px;
 }
@@ -197,10 +200,21 @@
   .header h1 {
     font-size: 6rem; 
   }
+  .card .content {
+    padding: 24px;
+  }
+  .card .short__info p {
+    margin: 0 16px 4px 0;
+  }
 }
 @media (min-width: 600px) {
   .header h1 {
     font-size: 8rem; 
+  }
+}
+@media (min-width: 704px) {
+  .card .picture {
+    height: 100%;
   }
 }
 @media (min-width: 750px) {
