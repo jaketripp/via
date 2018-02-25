@@ -68,7 +68,7 @@ class Card extends Component {
                 <div className="content">
                     <h3 className="content__name">{this.state.business.name}</h3>
                     <div className="short__info">
-                        <p className="time"><Clock /> {this.state.minutes} mins</p>
+                        {this.state.minutes > 0 && <p className="time"><Clock /> {this.state.minutes} mins</p>}
                         <p className="amount"><Money /> {this.state.cost}</p>
                     </div>
                     <div className="short__info">

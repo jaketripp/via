@@ -127,7 +127,11 @@ class Form extends Component {
                         method: 'POST'
                     });
                     const responseBody = await response.json();
-                    this.setState({ trips: responseBody });
+                    if (responseBody.length === 0) {
+                        this.setState({ error: 'Try searching something else?' });
+                    } else {
+                        this.setState({ trips: responseBody });
+                    }
                 } catch (e) {
                     console.log(e);
                     this.setState({ error: 'Something went wrong. Refresh the page and try again' })
