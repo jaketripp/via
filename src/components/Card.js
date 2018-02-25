@@ -62,7 +62,8 @@ class Card extends Component {
         return (
             <div className="card">
                 <div className="picture">
-                    <div style={{ backgroundImage: `url(${this.state.business.imgURL})` }} alt={this.state.name}></div>
+                    {this.state.business.imgURL && <div style={{ backgroundImage: `url(${this.state.business.imgURL})` }} title={this.state.business.name}></div>}
+                    {!this.state.business.imgURL && <div style={{ backgroundImage: 'url(http://via.placeholder.com/320x320)' }} title={this.state.business.name}></div>}
                 </div>
                 <div className="content">
                     <h3 className="content__name">{this.state.business.name}</h3>
