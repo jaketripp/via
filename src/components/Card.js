@@ -75,7 +75,7 @@ class Card extends Component {
                         <p className="yelpURL"><a href={this.state.business.yelpURL} title="Yelp Link" target="_blank" rel="noopener"><Yelp /></a></p>
                         <p className="stars">{this.ratingToStars(this.state.business.rating)}</p>
                     </div>
-                    <p className="phone"><a href={`tel:${this.state.business.phoneNumber}`} title="phone number"><Phone /> {this.state.business.phoneNumber}</a></p>
+                    {this.state.business.phoneNumber && <p className="phone"><a href={`tel:${this.state.business.phoneNumber}`} title="phone number"><Phone /> {this.state.business.phoneNumber}</a></p>}
                     <p className="link"><a href={this.busRouteURL()} target="_blank" rel="noopener" title="Bus routes"><Location /> Bus routes</a></p>
                 </div>
             </div>
