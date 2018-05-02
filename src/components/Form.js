@@ -23,33 +23,29 @@ class Form extends Component {
   }
 
   getLocation() {
-    // disable useMyLocation checkbox and set location state to ''
-    const geo_error = () => {
-      this.setState({ location: "", useMyLocationEnabled: false });
-      return "";
+    let options = {
+      url:
+        "http://api.ipstack.com/check?access_key=0fbd0852bba7fd735d996ae8e433cb2c",
+      json: true
     };
-    // return cords
-    const geo_success = position => {
-      this.setState({
-        location: {
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude
-        }
-      });
-    };
+    request(options, (error, response, body) => {
+      if (body.error) {
+        this.setState({ location: "", useMyLocationEnabled: false });
+      } else {
+        let location = {
+          latitude: body.latitude,
+          longitude: body.longitude
+        };
 
-    if ("geolocation" in navigator) {
-      return navigator.geolocation.getCurrentPosition(geo_success, geo_error);
-      // geolocator not available
-      // disable useMyLocation checkbox and set location state to ''
-    } else {
-      this.setState({ location: "", useMyLocationEnabled: false });
-    }
+        this.setState({ location, error: "" });
+      }
+    });
   }
 
   onCheckboxChange = e => {
     this.setState({ useMyLocationEnabled: !this.state.useMyLocationEnabled });
   };
+
   onAmountChange = e => {
     const amount = e.target.value;
 
@@ -125,14 +121,17 @@ class Form extends Component {
         };
 
         try {
-          const response = await fetch("https://kiafarhang.com/distillr/", {
-            body: JSON.stringify(data),
-            headers: {
-              "content-type": "application/json"
-            },
-            mode: "cors",
-            method: "POST"
-          });
+          const response = await fetch(
+            "https://kiafarhang.com/distillr-java/",
+            {
+              body: JSON.stringify(data),
+              headers: {
+                "content-type": "application/json"
+              },
+              mode: "cors",
+              method: "POST"
+            }
+          );
           const responseBody = await response.json();
           if (responseBody.length === 0) {
             this.setState({ error: "Try searching something else?" });
