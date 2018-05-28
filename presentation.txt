@@ -1,0 +1,78 @@
+Kia - 
+	full stack developer at SA express news,
+	from minessota,
+	moved around a few times before coming to SA,
+	really interested in solving backend problems to simplify people’s lives
+
+Jake - 
+	remote front end developer for the University of Florida,
+	my dad is active duty in the Army, so I’ve lived all over the world and seen firsthand how much of a difference good public transportation makes
+	I really enjoy coming up with innovative solutions to difficult to solve problems
+
+
+Why we came to this codeathon -
+	we met 6 months ago through the coworking space Geekdom
+	we both have less than a year of professional development experience
+	wanted to work together because we thought our skillsets would compliment each other
+	it’s more satisfying and convenient that it’s a local problem
+
+
+Why we made it - 
+	It’s 2018, we make more decisions every single day than arguably any other time in history
+	what to eat, where to work, what to work on, who to date, who to spend an evening with, when to go on Facebook, what you think of people’s posts on Facebook, etc
+	Decision fatigue is a real thing
+	Decisions are hard, and time is precious
+	
+	
+
+Problems/competitors
+	I go to yelp, and type in tacos, then I have to look through them, pick one I like, copy and paste the address, go hunt down the VIA Trip Planner URL, type in my current address, and paste in the new address. That’s a lot of steps.   
+
+	Or I go to Google Maps, I type in tacos near me, I get a bunch of pins on the map and have to make a decision based on the reviews and what parts of town they’re in and what the traffic is like there. Then I have to click on the pins on the map individually and sort through the information. Eventually when (if) I ever make a decision, I will have to switch to the bus transportation tab, and hope that it’s accurate and a VIA bus is coming near me soon.
+
+	Distillr solves these problems in an elegant way. Distillr is basically yelp plus google plus VIA Trip Planner minus excess thinking and wasted time.
+
+
+[Briefly demo it]
+
+Let’s say Im a broke an hungry Trinity student. I really miss my Italian mother’s cooking. I’m craving Italian food, but I don’t have very much money, class starts in a little less than 2 hours, and I don’t have a car so I’m going to use VIA.
+I open up Distillr.
+I use my location.
+I type in $10
+I type in Italian.
+And I get Main Street Pizza & Pasta.
+
+We took your data and made requests to Yelp. We found a list of Italian places in the area, but only returned places that are in your price range and seem to fit your schedule. 
+
+Here’s the best part:
+	Do you remember how we told you that with Yelp, you have to copy and paste the address, find the VIA Trip Planner, type in your current address, and paste in the new address. 
+	Well with Distillr, we do that work for you. 
+	[click bus routes and show VIA’s magic]
+
+Distillr combines some of the best features from Yelp, Google, and VIA’s Trip Planner into one seamless experience.
+
+
+Okay now let’s say it’s February 25. I’m a developer and I had a really big project the past month, and I forgot to do something special with my girlfriend for Valentine’s day. She slashed the tires on my car in a fit of rage, and so now we have the take the bus. She has quite the sweet tooth, and payday is coming up, so let’s see what we get for desserts with a budget of $50.
+
+My location is already saved
+I type in $50
+I type in Desserts.
+And I get House Boozy Ice Cream & Brews.
+I can call ahead to have them be expecting us,
+And then check the bus routes to see the best incoming bus.
+My girlfriend and I are going to patch things up, and it’s all thanks to Distillr, VIA, ice cream, and booze.
+
+Distillr works with more than just restaurants. Because it works with Yelp, you can search for anything you can find on Yelp. For instance, you can search for haircuts, groceries, etc.
+
+If we were going to scale this out, here are some things we might do:  	Instead of sorting the places by physical distance, we would go through VIA’s data to sort by shortest bus route times.
+
+
+	We could utilize data provided by Google to more accurately know how long people tend to spend at each place.
+
+	We could create a database and track the places that are searched for and ultimately picked and provide that to VIA to improve their allocation of buses, number of stops, and shorten the interval of buses coming to those popular places
+
+
+
+Questions they’re going to throw at us
+	
+
