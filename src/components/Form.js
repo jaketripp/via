@@ -29,8 +29,14 @@ class Form extends Component {
       json: true
     };
     request(options, (error, response, body) => {
-      if (body.error) {
+      if (!body || body.success === false || body.error) {
         this.setState({ location: "", useMyLocationEnabled: false });
+        console.log("body");
+        console.log(body);
+        console.log("body.success");
+        console.log(body.success);
+        console.log("body.error");
+        console.log(body.error);
       } else {
         let location = {
           latitude: body.latitude,
